@@ -5,7 +5,7 @@ from app.component import get_response
 api = ApiBlueprint('callback')
 
 
-@api.route('/github/update-article', methods=['GET'])
+@api.route('/github/update-article', methods=['GET', 'POST'])
 def update_article():
     # 6f2658fb07626ec9612dc8069d440266
     gen_article.delay()
