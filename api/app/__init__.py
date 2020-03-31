@@ -5,10 +5,11 @@ from flask import Blueprint
 
 def init_app_br(app):
 
-    from app.api.v1 import user
+    from app.api.v1 import user, callback
 
     api = Blueprint('api', __name__)
     user.api.register(api)
+    callback.api.register(api)
 
     app.register_blueprint(api, url_prefix='/api')
 

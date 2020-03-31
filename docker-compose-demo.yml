@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  api:
+    build: api/
+    command: gunicorn -c gun.py server:app
+    ports:
+      - 12345:12345
+    environment:
+      - SERVER_ENV=$SERVER_ENV
+      - HOST_ID=$HOST_ID
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    volumes:
+      - "/data/tissue:/var/log/tissue"
+      - "/etc/localtime:/etc/localtime"
+    restart: always
+  cworker:
+    build: api/
+    command: celery worker -A app.celery_task -P gevent -c 5 --uid www --gid www
+    environment:
+      - SERVER_ENV=$SERVER_ENV
+      - HOST_ID=$HOST_ID
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+    volumes:
+      - "/etc/localtime:/etc/localtime"
+    restart: always
