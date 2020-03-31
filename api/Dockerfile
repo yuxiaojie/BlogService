@@ -12,5 +12,5 @@ WORKDIR /home/www
 COPY ./ /home/www
 
 ENV LOG_DIR /var/log/tissue
-RUN mkdir -p "$LOG_DIR" && chown -R www:www "$LOG_DIR"
+RUN mkdir -p "$LOG_DIR" && chown -R www:www "$LOG_DIR" && chown -R www:www /home/www
 VOLUME /var/log/tissue

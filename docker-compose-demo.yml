@@ -27,5 +27,5 @@ services:
     container_name: worker
     volumes:
       - "/etc/localtime:/etc/localtime"
-      - "/root/.ssh/id_rsa:/home/www/.ssh/id_rsa"
+      - "/root/.ssh/id_rsa:/home/www/id_rsa"
     restart: always

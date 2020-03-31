@@ -3,12 +3,15 @@ import os
 from datetime import datetime
 
 from app.celery_task.celery_utils import db_wrapper
-from app.config import LOG_PATH, GIT_SSH_COMMAND
+from app.config import LOG_PATH
 from app.models import Article
 
 REPOSITORY_NAME = 'blog-article'
 REPOSITORY = 'git@github.com:yuxiaojie/blog-article.git'
 WORKING_DIR = LOG_PATH
+SSH_KEY_FILE = '/home/www/id_rsa'
+GIT_SSH_COMMAND = 'GIT_SSH_COMMAND="ssh -i {} -o UserKnownHostsFile=/dev/null ' \
+                  '-o StrictHostKeyChecking=no"'.format(SSH_KEY_FILE)
 
 main_type = (('技术原创', Article.TYPE_ORIGINAL), ('文章阅读', Article.TYPE_READ), ('生活杂谈', Article.TYPE_FREE))
 
