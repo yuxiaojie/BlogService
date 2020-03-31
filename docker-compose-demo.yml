@@ -5,24 +5,26 @@ services:
     build: api/
     command: gunicorn -c gun.py server:app
     ports:
-      - 12345:12345
+      - 2345:2345
     environment:
-      - SERVER_ENV=$SERVER_ENV
+      - BLOG_SERVER_ENV=$SERVER_ENV
       - HOST_ID=$HOST_ID
       - SET_CONTAINER_TIMEZONE=true
       - CONTAINER_TIMEZONE=Asia/Shanghai
+    container_name: api
     volumes:
-      - "/data/tissue:/var/log/tissue"
+      - "/data/blog:/var/log/tissue"
       - "/etc/localtime:/etc/localtime"
     restart: always
   cworker:
     build: api/
     command: celery worker -A app.celery_task -P gevent -c 5 --uid www --gid www
     environment:
-      - SERVER_ENV=$SERVER_ENV
+      - BLOG_SERVER_ENV=$SERVER_ENV
       - HOST_ID=$HOST_ID
       - SET_CONTAINER_TIMEZONE=true
       - CONTAINER_TIMEZONE=Asia/Shanghai
+    container_name: worker
     volumes:
       - "/etc/localtime:/etc/localtime"
     restart: always

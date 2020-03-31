@@ -8,9 +8,11 @@ from app.models.db_base import db
 
 print(SQLALCHEMY_DATABASE_URI)
 app = create_app()
+db.init_app(app)
 
 manager = Manager(app)
 migrate = Migrate(app, db)  # 注册migrate到flask
+
 
 manager.add_command('db', MigrateCommand)   # 在终端环境下添加一个db命令
 

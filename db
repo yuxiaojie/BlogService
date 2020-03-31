@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker run -v /data/blog/migrations:/home/migrations --env BLOG_SERVER_ENV=product --env HOST_ID=001 \
+    blogservice_api python3 manage.py db "$@" -d /home/migrations/blog
