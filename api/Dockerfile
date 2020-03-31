@@ -9,7 +9,7 @@ ENTRYPOINT ["entrypoint.sh"]
 
 RUN addgroup www && adduser --system www && adduser www www
 WORKDIR /home/www
-COPY ./src /home/www
+COPY ./ /home/www
 
 ENV LOG_DIR /var/log/tissue
 RUN mkdir -p "$LOG_DIR" && chown -R www:www "$LOG_DIR"

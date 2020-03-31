@@ -11,7 +11,7 @@ group = 'www'
 debug = False
 deamon = False
 loglevel = 'info'
-bind = '0.0.0.0:12345'
+bind = '0.0.0.0:2345'
 max_requests = 5000
 
 x_forwarded_for_header = "X-Real-IP"
