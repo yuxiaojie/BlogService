@@ -7,8 +7,8 @@ services:
     ports:
       - 2345:2345
     environment:
-      - BLOG_SERVER_ENV=$SERVER_ENV
-      - HOST_ID=$HOST_ID
+      - BLOG_SERVER_ENV=product
+      - HOST_ID=001
       - SET_CONTAINER_TIMEZONE=true
       - CONTAINER_TIMEZONE=Asia/Shanghai
     container_name: api
@@ -20,11 +20,12 @@ services:
     build: api/
     command: celery worker -A app.celery_task -P gevent -c 5 --uid www --gid www
     environment:
-      - BLOG_SERVER_ENV=$SERVER_ENV
-      - HOST_ID=$HOST_ID
+      - BLOG_SERVER_ENV=product
+      - HOST_ID=001
       - SET_CONTAINER_TIMEZONE=true
       - CONTAINER_TIMEZONE=Asia/Shanghai
     container_name: worker
     volumes:
       - "/etc/localtime:/etc/localtime"
+      - "/root/.ssh/id_rsa:/home/www/.ssh/id_rsa"
     restart: always

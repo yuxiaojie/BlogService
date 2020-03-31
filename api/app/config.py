@@ -30,11 +30,13 @@ if ENV == 'product':
                               '@172.16.97.228:3308/blog_db?charset=utf8mb4'
     CELERY_BROKER_URL = 'redis://:009699c95ccd88db10fde88ddaf96c4adc41ffa3f30bf3499c365d936684e336@172.16.97.228:6688/0'
     LOG_PATH = '/var/log/tissue'
+    GIT_SSH_COMMAND = 'ssh -i /home/www/.ssh/id_rsa'
 else:
     API_HOST = '127.0.0.1:2345'
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:qwer`1234@localhost:3308/blog_db?charset=utf8mb4'
     CELERY_BROKER_URL = 'redis://:009699c95ccd88db10fde88ddaf96c4adc41ffa3f30bf3499c365d936684e336@127.0.0.1:6688/0'
     LOG_PATH = '/tmp/tissue'
+    GIT_SSH_COMMAND = ''
 
 
 def in_product():

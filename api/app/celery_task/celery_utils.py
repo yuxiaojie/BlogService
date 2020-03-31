@@ -8,10 +8,6 @@ from sqlalchemy.orm import sessionmaker
 from app.config import SQLALCHEMY_DATABASE_URI
 
 
-def celery_print(log):
-    print('[{}] {}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), log))
-
-
 class Atomic(object):
     _engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=False,
                             pool_size=30, pool_recycle=360, pool_timeout=20, max_overflow=50)
